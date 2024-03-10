@@ -7,7 +7,6 @@ import lombok.Setter;
 import java.util.ArrayList;
 import java.util.List;
 
-@AllArgsConstructor
 public class Task implements TaskPrototype {
     private final int id;
     @Setter
@@ -28,6 +27,14 @@ public class Task implements TaskPrototype {
         this.description = description;
         this.descriptionHistory = new ArrayList<>();
         this.descriptionHistory.add(description);
+    }
+
+    private Task(int id, String type, String title, String description, List<String> descriptionHistory) {
+        this.id = id;
+        this.type = type;
+        this.title = title;
+        this.description = description;
+        this.descriptionHistory = descriptionHistory;
     }
 
     @Override
