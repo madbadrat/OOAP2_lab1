@@ -3,43 +3,42 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0"
-      prefWidth="900.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="ru.vorotov.ooap2_lab1.Controller">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.vorotov.ooap2_lab1.Controller">
     <children>
         <ToolBar prefHeight="40.0" prefWidth="200.0">
             <items>
                 <Label nodeOrientation="RIGHT_TO_LEFT" text="Тип">
                     <graphic>
-                        <ChoiceBox fx:id="typeChoiceBox" nodeOrientation="LEFT_TO_RIGHT" prefWidth="150.0"/>
+                        <ChoiceBox fx:id="typeChoiceBox" nodeOrientation="LEFT_TO_RIGHT" prefWidth="150.0" />
                     </graphic>
                 </Label>
                 <Label nodeOrientation="RIGHT_TO_LEFT" text="Название">
                     <graphic>
-                        <TextField fx:id="titleField" nodeOrientation="LEFT_TO_RIGHT"/>
+                        <TextField fx:id="titleField" nodeOrientation="LEFT_TO_RIGHT" />
                     </graphic>
                 </Label>
                 <Label nodeOrientation="RIGHT_TO_LEFT" text="Описание">
                     <graphic>
-                        <TextField fx:id="descriptionField" nodeOrientation="LEFT_TO_RIGHT"/>
+                        <TextField fx:id="descriptionField" nodeOrientation="LEFT_TO_RIGHT" />
                     </graphic>
                 </Label>
+            <Button mnemonicParsing="false" onAction="#onHistoryButtonClick" text="История изменений" />
             </items>
         </ToolBar>
         <ToolBar prefHeight="40.0" prefWidth="200.0">
             <items>
-                <Button mnemonicParsing="false" onAction="#onAddButtonClick" text="Добавить"/>
-                <Button mnemonicParsing="false" onAction="#onCloneButtonClick" text="Клонировать задачу"/>
-                <Button mnemonicParsing="false" onAction="#onEditButtonClick" text="Редактировать задачу"/>
+                <Button mnemonicParsing="false" onAction="#onAddButtonClick" text="Добавить" />
+                <Button mnemonicParsing="false" onAction="#onCloneButtonClick" text="Клонировать задачу" />
+                <Button mnemonicParsing="false" onAction="#onEditButtonClick" text="Редактировать задачу" />
                 <Label nodeOrientation="RIGHT_TO_LEFT" text="id задачи">
                     <graphic>
-                        <TextField fx:id="idField" nodeOrientation="LEFT_TO_RIGHT"/>
+                        <TextField fx:id="idField" nodeOrientation="LEFT_TO_RIGHT" />
                     </graphic>
                 </Label>
-                <Label fx:id="editLabel"/>
-                <Button mnemonicParsing="false" onAction="#onEndButtonClick" text="Закончить редактирование"/>
+                <Label fx:id="editLabel" />
+                <Button mnemonicParsing="false" onAction="#onEndButtonClick" text="Закончить редактирование" />
             </items>
         </ToolBar>
-        <TextArea fx:id="textArea" editable="false" prefHeight="364.0" prefWidth="900.0"/>
+        <TextArea fx:id="textArea" editable="false" prefHeight="364.0" prefWidth="900.0" />
     </children>
 </VBox>

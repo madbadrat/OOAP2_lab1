@@ -9,6 +9,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class Controller implements Initializable {
@@ -27,15 +28,12 @@ public class Controller implements Initializable {
 
     private final String[] types = {"срочно", "не срочно"};
     private TaskManager taskManager;
-    private int totalTasks = 0;
 
     public void onAddButtonClick(ActionEvent actionEvent) {
         textArea.clear();
-        taskManager.createTask(new Task(totalTasks++, typeChoiceBox.getValue(), titleField.getText(), descriptionField.getText()));
+        taskManager.createTask(new Task(TaskManager.amountOfTasks, typeChoiceBox.getValue(), titleField.getText(), descriptionField.getText()));
 
-        for (int i = 0; i < taskManager.getTasks().size(); i++) {
-            textArea.appendText(taskManager.getTasks().get(i).toString());
-        }
+        updateTextArea();
     }
 
     @Override
@@ -47,11 +45,16 @@ public class Controller implements Initializable {
     public void onCloneButtonClick(ActionEvent actionEvent) {
         textArea.clear();
         Task oldTask = taskManager.getTask(Integer.parseInt(idField.getText()));
-        taskManager.createTask(new Task(totalTasks++, oldTask.getType(), oldTask.getTitle(), oldTask.getDescription()));
+        taskManager.createTask(new Task(
+                TaskManager.amountOfTasks,
+                oldTask.getType(),
+                oldTask.getTitle(),
+                oldTask.getDescription(),
+                new ArrayList<>(oldTask.getDescriptionHistory())
+                )
+        );
 
-        for (int i = 0; i < taskManager.getTasks().size(); i++) {
-            textArea.appendText(taskManager.getTasks().get(i).toString());
-        }
+        updateTextArea();
     }
 
     public void onEditButtonClick(ActionEvent actionEvent) {
@@ -73,9 +76,17 @@ public class Controller implements Initializable {
                     descriptionField.getText()
             );
 
-            for (int i = 0; i < taskManager.getTasks().size(); i++) {
-                textArea.appendText(taskManager.getTasks().get(i).toString());
-            }
+            updateTextArea();
+        }
+    }
+
+    public void onHistoryButtonClick(ActionEvent actionEvent) {
+        System.out.println(taskManager.getTask(Integer.parseInt(idField.getText())).getDescriptionHistory().toString());
+    }
+
+    private void updateTextArea() {
+        for (int i = 0; i < taskManager.getTasks().size(); i++) {
+            textArea.appendText(taskManager.getTasks().get(i).toString());
         }
     }
 }
