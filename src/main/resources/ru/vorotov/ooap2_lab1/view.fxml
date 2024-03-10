@@ -24,6 +24,7 @@
                         <TextField fx:id="descriptionField" nodeOrientation="LEFT_TO_RIGHT"/>
                     </graphic>
                 </Label>
+                <Button mnemonicParsing="false" onAction="#onHistoryButtonClick" text="История изменений"/>
             </items>
         </ToolBar>
         <ToolBar prefHeight="40.0" prefWidth="200.0">

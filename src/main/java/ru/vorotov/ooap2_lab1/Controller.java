@@ -3,10 +3,14 @@ package ru.vorotov.ooap2_lab1;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -27,11 +31,10 @@ public class Controller implements Initializable {
 
     private final String[] types = {"срочно", "не срочно"};
     private TaskManager taskManager;
-    private int totalTasks = 0;
 
     public void onAddButtonClick(ActionEvent actionEvent) {
         textArea.clear();
-        taskManager.createTask(new Task(totalTasks++, typeChoiceBox.getValue(), titleField.getText(), descriptionField.getText()));
+        taskManager.createTask(new Task(TaskManager.amountOfTasks, typeChoiceBox.getValue(), titleField.getText(), descriptionField.getText()));
 
         for (int i = 0; i < taskManager.getTasks().size(); i++) {
             textArea.appendText(taskManager.getTasks().get(i).toString());
@@ -47,8 +50,7 @@ public class Controller implements Initializable {
     public void onCloneButtonClick(ActionEvent actionEvent) {
         textArea.clear();
         Task oldTask = taskManager.getTask(Integer.parseInt(idField.getText()));
-        taskManager.createTask(new Task(totalTasks++, oldTask.getType(), oldTask.getTitle(), oldTask.getDescription()));
-
+        taskManager.createTask(oldTask.clone());
         for (int i = 0; i < taskManager.getTasks().size(); i++) {
             textArea.appendText(taskManager.getTasks().get(i).toString());
         }
@@ -77,5 +79,9 @@ public class Controller implements Initializable {
                 textArea.appendText(taskManager.getTasks().get(i).toString());
             }
         }
+    }
+
+    public void onHistoryButtonClick(ActionEvent actionEvent) {
+        System.out.println(taskManager.getTask(Integer.parseInt(idField.getText())).getDescriptionHistory().toString());
     }
 }
