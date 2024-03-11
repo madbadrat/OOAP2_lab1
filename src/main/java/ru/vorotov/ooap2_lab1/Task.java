@@ -9,14 +9,18 @@ import java.util.List;
 
 public class Task implements TaskPrototype {
     private final int id;
+
     @Setter
     @Getter
     private String type;
+
     @Setter
     @Getter
     private String title;
+
     @Getter
     private String description;
+
     @Getter
     private List<String> descriptionHistory;
 

@@ -36,9 +36,7 @@ public class Controller implements Initializable {
         textArea.clear();
         taskManager.createTask(new Task(TaskManager.amountOfTasks, typeChoiceBox.getValue(), titleField.getText(), descriptionField.getText()));
 
-        for (int i = 0; i < taskManager.getTasks().size(); i++) {
-            textArea.appendText(taskManager.getTasks().get(i).toString());
-        }
+        updateTextArea();
     }
 
     @Override
@@ -51,9 +49,8 @@ public class Controller implements Initializable {
         textArea.clear();
         Task oldTask = taskManager.getTask(Integer.parseInt(idField.getText()));
         taskManager.createTask(oldTask.clone());
-        for (int i = 0; i < taskManager.getTasks().size(); i++) {
-            textArea.appendText(taskManager.getTasks().get(i).toString());
-        }
+
+        updateTextArea();
     }
 
     public void onEditButtonClick(ActionEvent actionEvent) {
@@ -75,13 +72,17 @@ public class Controller implements Initializable {
                     descriptionField.getText()
             );
 
-            for (int i = 0; i < taskManager.getTasks().size(); i++) {
-                textArea.appendText(taskManager.getTasks().get(i).toString());
-            }
+            updateTextArea();
         }
     }
 
     public void onHistoryButtonClick(ActionEvent actionEvent) {
         System.out.println(taskManager.getTask(Integer.parseInt(idField.getText())).getDescriptionHistory().toString());
+    }
+
+    private void updateTextArea() {
+        for (int i = 0; i < taskManager.getTasks().size(); i++) {
+            textArea.appendText(taskManager.getTasks().get(i).toString());
+        }
     }
 }
